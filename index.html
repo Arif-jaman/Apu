@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>送料シミュレーター | Shipping Fee Calculator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>🚚 送料シミュレーター</h1>
+  <p class="sub">Shipping Fee Calculator · どんな住所でも入力すると送料がわかります</p>
+
+  <section class="card" aria-label="入力 Input">
+    <label for="addr">住所 <small>Address – 日本語でも English でもOK (例: 東京都豊島区東池袋1-1 / Osaka)</small></label>
+    <input id="addr" type="text" placeholder="〒170-0013 東京都豊島区東池袋…" autocomplete="street-address">
+    <div class="chips" id="samples" aria-label="Examples">
+      <button type="button">東京都豊島区東池袋1-1</button><button type="button">〒530-0001 大阪府大阪市北区梅田</button>
+      <button type="button">北海道札幌市中央区</button><button type="button">沖縄県那覇市</button>
+    </div>
+    <p id="status" role="status" aria-live="polite"></p>
+
+    <label for="zip">郵便番号 <small>Postal code (optional) 例: 170-0013</small></label>
+    <input id="zip" type="text" inputmode="numeric" maxlength="8" placeholder="170-0013" autocomplete="postal-code">
+
+    <label for="pref">都道府県 <small>Prefecture (自動入力 / 手動でも変更できます)</small></label>
+    <select id="pref"></select>
+
+    <label for="amount">商品合計 <small>Order amount (¥)</small></label>
+    <input id="amount" type="number" inputmode="numeric" min="0" step="100" value="12000">
+
+    <label class="chk"><input type="checkbox" id="island"> 離島へ配送 <small>&nbsp;Remote island</small></label>
+
+    <label style="margin-top:16px">配送方法 <small>Delivery method</small></label>
+    <div class="opts" id="methods" role="radiogroup"></div>
+  </section>
+
+  <section class="card" id="result" aria-live="polite"></section>
+
+  <section class="card">
+    <b>送料表 Rate table</b>
+    <table class="table" id="rates"></table>
+    <p class="note">※送料は当店の配送規定に基づいて計算しています。ご使用運送店の都合により運賃が変わる場合もございます。</p>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
